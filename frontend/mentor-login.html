@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentor Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #fff;
+      display: flex;
+      height: 100vh;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 60px;
+    }
+
+    .left {
+      max-width: 400px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo span {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 350px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button.login-btn {
+      padding: 12px;
+      background-color: #6a4bc3;
+      color: #fff;
+      font-size: 15px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(106, 75, 195, 0.4);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button.login-btn:hover {
+      background-color: #5638a6;
+    }
+
+    .right img {
+      max-width: 380px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left">
+      <div class="logo">
+        <img src="logo.jpg" alt="Logo" />
+        <span>INTERNSHIP EVALUATION</span>
+      </div>
+
+      <h1>Mentor Login</h1>
+
+      <div class="form-group">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password"  />
+        <button class="login-btn" onclick="mentorLogin()">Login</button>
+      </div>
+    </div>
+
+    <!-- Right Illustration -->
+    <div class="right">
+      <img src="sidefig.jpg" alt="Illustration" />
+    </div>
+  </div>
+
+  <script>
+    function mentorLogin() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      // ✅ You can change this to your preferred credentials
+      if (username === "mentor" && password === "1234") {
+        window.location.href = "mentor.html"; // Redirect to mentor page
+      } else {
+        alert("Invalid login. Try again!");
+      }
+    }
+  </script>
+
+</body>
+</html>

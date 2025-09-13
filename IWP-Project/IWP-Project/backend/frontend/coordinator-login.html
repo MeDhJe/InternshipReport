@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coordinator Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 40px 60px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo span {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-top: 40px;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button.login-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #6a4bc3;
+      color: #fff;
+      font-size: 15px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(106, 75, 195, 0.4);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button.login-btn:hover {
+      background-color: #5638a6;
+    }
+
+    .google-btn,
+    .apple-btn {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .google-btn {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .google-btn img {
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .apple-btn {
+      background-color: #000;
+      color: white;
+    }
+
+    .apple-btn img {
+      height: 18px;
+      margin-right: 10px;
+      filter: invert(100%);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <img src="logo.png" alt="Logo" />
+    <span>INTERNSHIP EVALUATION</span>
+  </div>
+
+  <h1>Coordinator Login</h1>
+
+  <div class="form-group">
+    <input type="text" placeholder="Username" />
+    <input type="password" placeholder="Password" />
+    <button class="login-btn">Login</button>
+
+    <button class="google-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Logo" />
+      Sign Up with Google
+    </button>
+
+    <button class="apple-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" />
+      Sign In with Apple
+    </button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #fff;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 40px 60px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo span {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .buttons button {
+      width: 220px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #9b59b6;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #8e44ad;
+    }
+
+    /* Right section */
+    .right-section {
+      width: 280px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .user-profile {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .user-profile .info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-profile .info div:first-child {
+      font-weight: bold;
+    }
+
+    .user-profile .info div:last-child {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .sidebar {
+      margin-top: 80px;
+      background-color: #9b59b6;
+      border-radius: 30px 0 0 30px;
+      color: #fff;
+      width: 100%;
+      padding: 40px 20px;
+      height: calc(100% - 80px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .sidebar a.active {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Main Content -->
+  <div class="main-content">
+    <div class="logo">
+      <img src="logo.png" alt="Logo" />
+      <span>INTERNSHIP EVALUATION</span>
+    </div>
+
+    <h1>Off Campus</h1>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button onclick="window.location.href='govt-internship-form.html'">Government</button>
+      <button onclick="window.location.href='iit-nit-internship-form.html'">IIT/NIT</button>
+      <button onclick="window.location.href='private-internship-form.html'">Private</button>
+
+    </div>
+  </div>
+
+  <!-- Right Sidebar -->
+  <div class="right-section">
+
+    <!-- Student Profile on top -->
+    <div class="user-profile">
+      <img src="https://i.pravatar.cc/40" alt="Avatar" />
+      <div class="info">
+        <div id="student-name">John Doe</div>
+        <div>3rd year</div>
+      </div>
+    </div>
+
+    <!-- Sidebar Card -->
+    <div class="sidebar">
+      <img src="graduation-icon.png" alt="Graduation" />
+      <a href="#">Dashboard</a>
+      <a class="active" href="#">Personal Info</a>
+      <a href="#">Mess Info</a>
+      <a href="#">Academics</a>
+      <a href="#">Clubs</a>
+      <a href="#">Achievements</a>
+      <a href="#">Research Work</a>
+      <a href="#">Internships</a>
+      <a href="#">Skills</a>
+      <a href="#">Projects</a>
+    </div>
+  </div>
+
+  <script>
+    // Get student name from localStorage (set during login)
+    const studentName = localStorage.getItem("studentName") || "John Doe";
+    document.getElementById("student-name").textContent = studentName;
+  </script>
+
+</body>
+</html>

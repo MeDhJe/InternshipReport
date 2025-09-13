@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internship Type</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #fff;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .main-content h1 {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      color: #6a4bc3;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .buttons button {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #6a4bc3;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #5638a6;
+    }
+
+    .right-section {
+      width: 40%;
+      background: url("sidefig.jpg") no-repeat center center;
+      background-size: contain;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="main-content">
+    <h1>Select Internship Type</h1>
+    <div class="buttons">
+      <button onclick="navigateTo('offcampus')">Off Campus</button>
+      <button onclick="navigateTo('oncampus')">On Campus</button>
+    </div>
+  </div>
+
+  <div class="right-section"></div>
+
+  <script>
+    function navigateTo(type) {
+      if(type === 'offcampus') {
+        window.location.href = 'firstpage.html';
+      } else if(type === 'oncampus') {
+        window.location.href = 'oncampus.html';
+      }
+    }
+  </script>
+</body>
+</html>

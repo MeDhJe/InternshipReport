@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Government Internship Form</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", sans-serif; display: flex; height: 100vh; background-color: #fff; }
+    .main-content { flex:1; padding:40px 60px; }
+    .logo { display:flex; align-items:center; gap:10px; margin-bottom:30px; }
+    .logo img { width:40px; height:40px; }
+    .logo span { font-weight:bold; font-size:16px; }
+    h1 { font-size:28px; font-weight:bold; margin-bottom:20px; }
+    form { display:flex; flex-direction:column; gap:15px; max-width:350px; }
+    input[type="text"], input[type="email"] { padding:10px; font-size:14px; border-radius:6px; border:1px solid #ccc; }
+    button { padding:12px; font-size:18px; font-weight:bold; background-color:#9b59b6; color:white; border:none; border-radius:10px; cursor:pointer; transition:0.3s ease; margin-top:10px; }
+    button:hover { background-color:#8e44ad; }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <div class="logo">
+      <img src="logo.jpg" alt="Logo" />
+      <span>INTERNSHIP EVALUATION</span>
+    </div>
+    <h1>Government Internship</h1>
+    <form id="govtForm">
+      <input type="text" id="name" placeholder="Name of student" required />
+      <input type="text" id="regNo" placeholder="Register no" required />
+      <input type="text" id="department" placeholder="Department" required />
+      <input type="email" id="email" placeholder="Email Id" required />
+      <input type="text" id="phone" placeholder="Phone" required />
+      <input type="text" id="organization" placeholder="Organisation Name" required />
+      <input type="text" id="address" placeholder="Address of Organisation" required />
+      <input type="text" id="domain" placeholder="Domain" required />
+      <input type="text" id="duration" placeholder="Duration" required />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("govtForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById("name").value,
+        regNo: document.getElementById("regNo").value,
+        department: document.getElementById("department").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        organization: document.getElementById("organization").value,
+        address: document.getElementById("address").value,
+        domain: document.getElementById("domain").value,
+        duration: document.getElementById("duration").value
+      };
+      const response = await fetch("http://localhost:5000/submit-govt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const result = await response.json();
+      alert(result.message);
+      window.location.href = "completion-report.html";
+    });
+  </script>
+</body>
+</html>
