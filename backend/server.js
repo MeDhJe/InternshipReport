@@ -2,7 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+
+// Connect to MongoDB via db.js
 const db = require("./db");
+const Internship = require("./models/Internship");
 
 const app = express();
 app.use(bodyParser.json());
@@ -12,93 +15,71 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 // API route: Save Private Internship data
-app.post("/submit-private", (req, res) => {
-  const { studentName, internshipTitle, duration, remarks } = req.body;
-  const sql = `
-    INSERT INTO private_internships (studentName, internshipTitle, duration, remarks)
-    VALUES (?, ?, ?, ?)
-  `;
-  db.query(sql, [studentName, internshipTitle, duration, remarks], (err, result) => {
-    if (err) {
-      console.error("Database error (private):", err);
-      return res.status(500).json({ message: "Database error" });
-    }
+app.post("/submit-private", async (req, res) => {
+  try {
+    const data = { ...req.body, type: "Private" };
+    const newInternship = new Internship(data);
+    await newInternship.save();
     res.json({ message: "Private Internship data saved to database" });
-  });
+  } catch (err) {
+    console.error("Database error (private):", err);
+    res.status(500).json({ message: "Database error" });
+  }
 });
 
 // API route: Save Government Internship data
-app.post("/submit-govt", (req, res) => {
-  const { studentName, internshipTitle, duration, remarks } = req.body;
-  const sql = `
-    INSERT INTO government_internships (studentName, internshipTitle, duration, remarks)
-    VALUES (?, ?, ?, ?)
-  `;
-  db.query(sql, [studentName, internshipTitle, duration, remarks], (err, result) => {
-    if (err) {
-      console.error("Database error (government):", err);
-      return res.status(500).json({ message: "Database error" });
-    }
+app.post("/submit-govt", async (req, res) => {
+  try {
+    const data = { ...req.body, type: "Government" };
+    const newInternship = new Internship(data);
+    await newInternship.save();
     res.json({ message: "Government Internship data saved to database" });
-  });
+  } catch (err) {
+    console.error("Database error (government):", err);
+    res.status(500).json({ message: "Database error" });
+  }
 });
 
 // API route: Save IIT/NIT Internship data
-app.post("/submit-iit", (req, res) => {
-  const { studentName, internshipTitle, duration, remarks } = req.body;
-  const sql = `
-    INSERT INTO iit_internships (studentName, internshipTitle, duration, remarks)
-    VALUES (?, ?, ?, ?)
-  `;
-  db.query(sql, [studentName, internshipTitle, duration, remarks], (err, result) => {
-    if (err) {
-      console.error("Database error (IIT/NIT):", err);
-      return res.status(500).json({ message: "Database error" });
-    }
+app.post("/submit-iit", async (req, res) => {
+  try {
+    const data = { ...req.body, type: "IIT/NIT" };
+    const newInternship = new Internship(data);
+    await newInternship.save();
     res.json({ message: "IIT/NIT Internship data saved to database" });
-  });
+  } catch (err) {
+    console.error("Database error (IIT/NIT):", err);
+    res.status(500).json({ message: "Database error" });
+  }
 });
 
 // API route: Save On-Campus Internship data
-app.post("/submit-oncampus", (req, res) => {
-  const { studentName, internshipTitle, duration, remarks } = req.body;
-  const sql = `
-    INSERT INTO oncampus_internships (studentName, internshipTitle, duration, remarks)
-    VALUES (?, ?, ?, ?)
-  `;
-  db.query(sql, [studentName, internshipTitle, duration, remarks], (err, result) => {
-    if (err) {
-      console.error("Database error (on-campus):", err);
-      return res.status(500).json({ message: "Database error" });
-    }
+app.post("/submit-oncampus", async (req, res) => {
+  try {
+    const data = { ...req.body, type: "On-Campus" };
+    const newInternship = new Internship(data);
+    await newInternship.save();
     res.json({ message: "On-Campus Internship data saved to database" });
-  });
+  } catch (err) {
+    console.error("Database error (on-campus):", err);
+    res.status(500).json({ message: "Database error" });
+  }
 });
 
 // API route: Get all internship data combined
-app.get("/get-all-data", (req, res) => {
-  const queries = [
-    `SELECT 'Private' AS type, * FROM private_internships`,
-    `SELECT 'Government' AS type, * FROM government_internships`,
-    `SELECT 'IIT/NIT' AS type, * FROM iit_internships`,
-    `SELECT 'On-Campus' AS type, * FROM oncampus_internships`
-  ];
-
-  Promise.all(
-    queries.map(q => new Promise((resolve, reject) => {
-      db.query(q, (err, results) => {
-        if (err) reject(err);
-        else resolve(results);
-      });
-    }))
-  )
-  .then(results => {
-    res.json([].concat(...results));
-  })
-  .catch(err => {
+app.get("/get-all-data", async (req, res) => {
+  try {
+    const allData = await Internship.find();
+    res.json(allData);
+  } catch (err) {
     console.error("Database error (get all):", err);
     res.status(500).json({ message: "Database error" });
-  });
+  }
+});
+
+// Serve index.html at root
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 const PORT = 5000;
