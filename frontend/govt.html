@@ -54,7 +54,7 @@
         domain: document.getElementById("domain").value,
         duration: document.getElementById("duration").value
       };
-      const response = await fetch("http://localhost:5000/submit-govt", {
+      const response = await fetch("https://internship-2g5o.onrender.com/submit-govt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
